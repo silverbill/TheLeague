@@ -1,1 +1,6 @@
 C:\Users\bryansory\Code\Teams\Teams\bin\Debug\Teams.exe.config
+C:\Users\bryansory\Code\Teams\Teams\obj\Debug\Teams.csprojResolveAssemblyReference.cache
+C:\Users\bryansory\Code\Teams\Teams\bin\Debug\Teams.exe
+C:\Users\bryansory\Code\Teams\Teams\bin\Debug\Teams.pdb
+C:\Users\bryansory\Code\Teams\Teams\obj\Debug\Teams.exe
+C:\Users\bryansory\Code\Teams\Teams\obj\Debug\Teams.pdb
