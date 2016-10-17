@@ -18,6 +18,7 @@ namespace Teams
             IEnumerable<Team> teamsWest = "Broncos, Niners, Giants".Split(new char[] { ',' }).Select(s => new Team(s.Trim()));
 
             IEnumerable<Coach> coaches6 = "Belichik, Parcells, Garrett, Shula, Landry, Ryan".Split(new char[] { ',' }).Select(s => new Coach(s.Trim()));
+
             IEnumerable<Player> playersCowboys = "Witten, Romo, Newton".Split(new char[] { ',' }).Select(s => new Player(s.Trim()));
             IEnumerable<Player> playersBills = "3time, OchoCinco, Kelly".Split(new char[] { ',' }).Select(s => new Player(s.Trim()));
             IEnumerable<Player> playersRaiders = "Jones, Turn, Who'sonfirst".Split(new char[] { ',' }).Select(s => new Player(s.Trim()));
@@ -32,52 +33,52 @@ namespace Teams
             Eastern.teams = Eastern.teams.Concat(teamsEast);  //teams into conferences
             var Western = leagues.ElementAt(1);
             Western.teams = Western.teams.Concat(teamsWest);
-            
-                var Cowboys = new Team("Cowboys");
-                Cowboys = teamsEast.ElementAt(1);
-                Cowboys.coaches = Cowboys.coaches.Concat(coaches6.Where(c => c.name == "Parcells"));  //coaches into teams
-                //where cowboys is                                           //where coach is
-                var Bills = new Team("Bills");
-                Bills = teamsEast.ElementAt(0);
-                Bills.coaches = Bills.coaches.Concat(coaches6.Where(c => c.name == "Garrett"));
-                var Raiders = new Team("Raiders");
-                Raiders = teamsEast.ElementAt(2);
-                Raiders.coaches = Raiders.coaches.Concat(coaches6.Where(c => c.name == "Shula"));
-                var Broncos = new Team("Broncos");
-                Broncos = teamsWest.ElementAt(0);
-                Broncos.coaches = Broncos.coaches.Concat(coaches6.Where(c => c.name == "Landry"));
-                var Niners = new Team("Niners");
-                Niners = teamsEast.ElementAt(1);
-                Niners.coaches = Niners.coaches.Concat(coaches6.Where(c => c.name == "Ryan"));
-                var Giants = new Team("Giants");
-                Giants = teamsEast.ElementAt(2);
-                Giants.coaches = Giants.coaches.Concat(coaches6.Where(c => c.name == "Belichik"));
 
-                Cowboys.players = Cowboys.players.Concat(playersCowboys);
-                Giants.players = Giants.players.Concat(playersGiants);
-                Raiders.players = Raiders.players.Concat(playersRaiders);
-                Bills.players = Bills.players.Concat(playersBills);
-                Niners.players = Niners.players.Concat(playersNiners);
-                Broncos.players = Broncos.players.Concat(playersBroncos);
+            var Cowboys = new Team("Cowboys");
+            Cowboys = teamsEast.ElementAt(1);
+            Cowboys.coaches = Cowboys.coaches.Concat(coaches6.Where(c => c.name == "Parcells"));  //coaches into teams
+                                                                                                  //where cowboys is                                           //where coach is
+            var Bills = new Team("Bills");
+            Bills = teamsEast.ElementAt(0);
+            Bills.coaches = Bills.coaches.Concat(coaches6.Where(c => c.name == "Garrett"));
+            var Raiders = new Team("Raiders");
+            Raiders = teamsEast.ElementAt(2);
+            Raiders.coaches = Raiders.coaches.Concat(coaches6.Where(c => c.name == "Shula"));
+            var Broncos = new Team("Broncos");
+            Broncos = teamsWest.ElementAt(0);
+            Broncos.coaches = Broncos.coaches.Concat(coaches6.Where(c => c.name == "Landry"));
+            var Niners = new Team("Niners");
+            Niners = teamsEast.ElementAt(1);
+            Niners.coaches = Niners.coaches.Concat(coaches6.Where(c => c.name == "Ryan"));
+            var Giants = new Team("Giants");
+            Giants = teamsEast.ElementAt(2);
+            Giants.coaches = Giants.coaches.Concat(coaches6.Where(c => c.name == "Belichik"));
+
+            Cowboys.players = Cowboys.players.Concat(playersCowboys);
+            Giants.players = Giants.players.Concat(playersGiants);
+            Raiders.players = Raiders.players.Concat(playersRaiders);
+            Bills.players = Bills.players.Concat(playersBills);
+            Niners.players = Niners.players.Concat(playersNiners);
+            Broncos.players = Broncos.players.Concat(playersBroncos);
 
 
 
             Directory.CreateDirectory("html");
-                File.WriteAllText(@"html/index.html", football.ToString());
+            File.WriteAllText(@"html/index.html", football.ToString());
 
-                Console.WriteLine(football);
-                Console.ReadLine();
-            }
-        
+            Console.WriteLine(Cowboys);
+            Console.ReadLine();
+        }
+
 
         public enum sportType
-            {
-                Tennis,
-                Football,
-                Basketball,
-                Boxing,
-                Baseball
-            }
+        {
+            Tennis,
+            Football,
+            Basketball,
+            Boxing,
+            Baseball
+        }
 
         class Sport
         {
@@ -86,10 +87,10 @@ namespace Teams
             public IEnumerable<Team> allTeams = new List<Team>(); //- should return all the Teams in the sport
             public IEnumerable<Player> playerMostPoints = new List<Player>(); //- should return the Player in the sport with the most points
             public IEnumerable<Coach> topCoach = new List<Coach>(); //- should return the Coach whose Team's Players had the highest average points
-                public Sport(sportType s)
-                {
-                    sport = s;
-                }
+            public Sport(sportType s)
+            {
+                sport = s;
+            }
             public override string ToString()
             {
                 string b = String.Join(", ", leaguesMain);
@@ -105,13 +106,13 @@ namespace Teams
                         <p>Top Scorer: {3}</p>
                         <p>Top Coach: {4}</p>
                     </div>", sport, b, r, p, t);
-             }
+            }
         }
         class League
         {
             public IEnumerable<Team> teams = new List<Team>();
             public IEnumerable<Team> allTeams = new List<Team>();
-            public string name;            
+            public string name;
             public League(string name)
             {
                 this.name = name;
@@ -119,22 +120,22 @@ namespace Teams
             public override string ToString()
             {
                 string r = String.Join(", ", teams);
-                return String.Format("{0} : {1}",name, r);
+                return String.Format("{0} : {1}", name, r);
             }
         }
-       class Team
+        class Team
         {
             public string name;
             public string hometown;
             public IEnumerable<Coach> coaches = new List<Coach>();
             //public IEnumerable<Coach> coaches6 = new List<Coach>();
             public IEnumerable<Player> players = new List<Player>();
-            
+
             public Team(string name)
             {
                 this.name = name;
             }
-           
+
             public override string ToString()
             {
                 string r = String.Join(", ", coaches);
